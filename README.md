@@ -77,3 +77,33 @@ mcp-builder 스킬을 사용해서 README.md의 설계 문서대로 MCP 서버�
 구체적인 요구사항 포함: 설계 문서의 어떤 부분을 구현할지 명시
 기술 스택 언급: FastMCP, Python, TypeScript 등
 ```
+
+## PyPI 계정 설정
+
+1. PyPI 계정 생성: https://pypi.org/account/register/
+2. API 토큰 발급:
+  - https://pypi.org/manage/account/token/
+  - "Add API token" 클릭
+  - Token name: legacy-code-archive-mcp
+  - Scope: "Entire account" (첫 배포) 또는 프로젝트 선택
+  - 생성된 토큰 복사 (한 번만 표시됨!)
+3. GitHub Secrets 설정
+  - GitHub 저장소 → Settings → Secrets and variables → Actions
+  - New repository secret 클릭
+  - Name: PYPI_API_TOKEN
+  - Secret: PyPI API 토큰 붙여넣기
+
+## 사용 방법
+
+```json
+{
+  "mcpServers": {
+    "<MCP 명칭>": {
+      "command": "uvx",
+      "args": ["<패키지명>"],
+      "env": {
+      }
+    }
+  }
+}
+```
