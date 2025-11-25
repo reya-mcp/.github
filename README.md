@@ -22,24 +22,6 @@ mcp-builder 스킬을 사용해서 README.md의 설계 문서대로 MCP 서버�
 - 테스트 환경에서는 mock 설정으로 실행 가능하도록 설계
 - Optional 환경 변수와 Required 환경 변수를 명확히 구분
 
-**config.py 구현 패턴:**
-```python
-# 잘못된 패턴 (모듈 레벨에서 즉시 로드 - 피해야 함)
-from dotenv import load_dotenv
-load_dotenv()  # ❌ 모듈 import 시 바로 실행됨
-
-# 올바른 패턴 (함수 내부에서 lazy loading)
-from dotenv import load_dotenv
-
-def load_config() -> Config:
-    """환경 변수에서 구성을 로드합니다."""
-    # .env 파일 로드 (파일이 없어도 에러 발생하지 않음)
-    load_dotenv(override=False)
-    
-    # 이후 환경 변수 읽기 및 검증
-    ...
-```
-
 **배포 요구사항:**
 - uvx로 설치 없이 바로 실행 가능하도록 패키지 구조 설정
 - PyPI 배포 가능한 구조로 개발 (pyproject.toml 완벽 설정)
