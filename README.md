@@ -30,18 +30,35 @@ mcp-builder 스킬을 사용해서 README.md의 설계 문서대로 MCP 서버�
   - build (빌드), clean (정리), check (전체 검사)
   - 각 명령어에 짧은 alias 제공 (d, t, l, f 등)
 
+**자동 배포 설정:**
+- .github/workflows/publish.yml 파일 생성
+- GitHub Release 생성 시 자동으로 PyPI 배포
+- workflow 내용:
+  - Python 3.11 사용
+  - uv run task check로 전체 검사 실행
+  - python -m build로 패키지 빌드
+  - twine으로 PyPI 업로드
+  - PYPI_API_TOKEN secret 사용
+- .github/workflows/test.yml 파일 생성 (PR/Push 시 자동 테스트)
+  - Python 3.11, 3.12 매트릭스 테스트
+  - uv sync로 의존성 설치
+  - uv run task check 실행
+
 **문서화 요구사항:**
 - QUICKSTART.md: 
   - uvx 사용법 포함
   - uv + taskipy 개발 환경 설정 방법
   - 사용 가능한 모든 스크립트 목록
 - DEPLOY.md: 
-  - PyPI 배포 가이드
-  - GitHub Actions 자동 배포 설정
+  - PyPI 수동 배포 가이드 (단계별)
+  - GitHub Actions 자동 배포 설정 방법
+  - GitHub Secrets 설정 가이드
   - uv + taskipy 개발 워크플로우 섹션
+  - 릴리스 생성 방법 (git tag 사용)
 - README.md: 
   - 빠른 시작 섹션 추가
   - 📦 개발 스크립트 섹션 추가 (주요 명령어 한눈에 보기)
+  - CI/CD 배지 추가 (GitHub Actions)
 
 **테스트 요구사항:**
 - 로컬에서 바로 테스트 가능한 방법 제공
@@ -52,6 +69,7 @@ mcp-builder 스킬을 사용해서 README.md의 설계 문서대로 MCP 서버�
 - uvx로 바로 실행할 수 있는지 확인
 - uv run task dev로 개발 서버 실행 가능한지 확인
 - 모든 스크립트 명령어가 정상 작동하는지 확인
+- GitHub Actions workflow 파일 문법 검증
 "
 
 💡 핵심 팁
