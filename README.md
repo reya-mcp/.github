@@ -5,38 +5,32 @@
 ```
 📝 Claude Skills 활용 프롬프트 작성 방법
 
-1️⃣ 직접적인 방법 (명시적으로 스킬 호출)
 "
-mcp-builder 스킬을 사용해서 README.md의 설계 문서대로 MCP 서버를 개발해줘
-기술 스택을 사용하기 전에 Context7 MCP를 사용해서 최신 기술 사용 방법을 확이하고 나서 개발을 진행해줘.
-주석은 한글로 작성해줘.
-"
-또는
-"
-mcp-builder 스킬로 Legacy Code Archive MCP Server를 구현해줘
-"
+mcp-builder 스킬을 사용해서 README.md의 설계 문서대로 MCP 서버를 개발해줘.
 
-2️⃣ 자연어 방법 (스킬 목적과 일치하는 요청)
-스킬의 description이 "MCP 서버를 생성하기 위한 가이드"이므로, 자연스럽게:
-"
-README.md에 있는 설계대로 FastMCP를 사용해서 MCP 서버를 만들어줘
-"
-또는
-"
-이 프로젝트를 MCP 서버로 구현해줘. Python FastMCP 사용하고, 
-설계 문서에 나온 대로 index_codebase와 search_legacy_code 도구를 만들어야 해
-"
+**기술 스택 확인:**
+- Context7 MCP를 사용해서 최신 기술 사용 방법을 확인하고 개발 진행
 
-3️⃣ 추천 프롬프트 (현재 프로젝트에 최적화)
-"
-mcp-builder 스킬을 사용해서 개발해줘.
+**개발 요구사항:**
+- 모든 주석과 docstring은 한글로 작성
+- 모든 문서(README, QUICKSTART 등)는 한글로 작성
 
-README.md에 정의된 설계 문서를 따라서:
-1. FastMCP 프레임워크로 MCP 서버 구현
-2. index_codebase 도구 - 코드베이스 인덱싱
-3. search_legacy_code 도구 - 시맨틱 검색
-4. LanceDB + OpenAI Embedding 사용
-5. Java, Vue.js, TypeScript 지원
+**배포 요구사항:**
+- uvx로 설치 없이 바로 실행 가능하도록 패키지 구조 설정
+- PyPI 배포 가능한 구조로 개발 (pyproject.toml 완벽 설정)
+- [project.scripts] 엔트리 포인트 설정
+- 적절한 Python 패키지 네이밍 컨벤션 적용 (언더스코어)
+
+**문서화 요구사항:**
+- QUICKSTART.md: uvx 사용법 포함
+- DEPLOY.md: PyPI 배포 가이드, GitHub Actions 자동 배포 설정
+- README.md: 빠른 시작 섹션 추가
+
+**테스트 요구사항:**
+- 로컬에서 바로 테스트 가능한 방법 제공
+- .env.example 파일 포함
+
+개발 완료 후 uvx로 바로 실행할 수 있는지 확인해줘.
 "
 
 💡 핵심 팁
